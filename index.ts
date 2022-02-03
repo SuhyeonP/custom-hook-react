@@ -9,4 +9,4 @@ export function getPlural(str: any): string {
     return pluralize.plural(str)
 }
 
-export { useInput } from './lib/reactHook'
+export { useInput } from './src/reactHook'
