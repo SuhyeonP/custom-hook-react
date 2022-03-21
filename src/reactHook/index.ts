@@ -17,13 +17,11 @@ export function useErrorInput(initialValue: string, regEx: RegExp =wildCard, max
     const [error, setError] = useState<boolean>(false);
 
     const handler = useCallback(e => {
-        if (e.target.value.length <= maxLength && regEx.test(value)) {
-            setValue(e.target.value)
-            if(error) {
-                setError(false);
-            }
+        if (e.target.value.length <= maxLength) {
+            setValue(e.target.value);
+            setError(!regEx.test(e.target.value));
         } else {
-           setError(true) ;
+            setError(true);
         }
     },[error])
 
