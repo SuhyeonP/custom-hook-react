@@ -12,7 +12,7 @@ export function useInput<T>(initialValue: T, maxLength = Infinity): [T, (e: Reac
 
 const wildCard = new RegExp(/.*/g);
 
-export function useErrorInput(initialValue: string, maxLength = Infinity, regEx: RegExp =wildCard ): [string, (e: React.FormEvent) => void, Dispatch<SetStateAction<string>>, boolean] {
+export function useErrorInput(initialValue: string, regEx: RegExp =wildCard, maxLength = Infinity): [string, (e: React.FormEvent) => void, Dispatch<SetStateAction<string>>, boolean] {
     const [value, setValue] = useState<string>(initialValue);
     const [error, setError] = useState<boolean>(false);
 
@@ -49,28 +49,28 @@ export function useErrorInput(initialValue: string, maxLength = Infinity, regEx:
 //     return value;
 // }
 //
-
-export function useDebounceFunction (func: any, delay: number): (...args: any) => void {
-    let timeOut: any;
-
-    return (...args: any) => {
-        const context = this;
-        if (timeOut) clearTimeout(timeOut);
-        timeOut = setTimeout(() => {
-            timeOut = null;
-            func.apply(context, args); // when exist this context
-        },delay)
-    }
-}
-
-interface RenderFrame<Fn> {
-    (cb: Fn | (() => void), timeStart?: number): FrameRequestCallback;
-}
-
-type Args = any[];
-
-const defaultDeps: DependencyList = [];
-
-export function useDebounceDeps (fn: EffectCallback) {
-
-}
+//
+// export function useDebounceFunction (func: any, delay: number): (...args: any) => void {
+//     let timeOut: any;
+//
+//     return (...args: any) => {
+//         const context = this;
+//         if (timeOut) clearTimeout(timeOut);
+//         timeOut = setTimeout(() => {
+//             timeOut = null;
+//             func.apply(context, args); // when exist this context
+//         },delay)
+//     }
+// }
+//
+// interface RenderFrame<Fn> {
+//     (cb: Fn | (() => void), timeStart?: number): FrameRequestCallback;
+// }
+//
+// type Args = any[];
+//
+// const defaultDeps: DependencyList = [];
+//
+// export function useDebounceDeps (fn: EffectCallback) {
+//
+// }
