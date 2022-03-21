@@ -1,1 +1,1 @@
-export { useInput } from './dist'
+export { useInput, useErrorInput } from './dist'
