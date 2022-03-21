@@ -25,7 +25,7 @@ export function useErrorInput(initialValue: string, regEx: RegExp =wildCard, max
         } else {
             setError(true);
         }
-    },[error])
+    },[])
 
     return [value, handler, setValue, error];
 }
