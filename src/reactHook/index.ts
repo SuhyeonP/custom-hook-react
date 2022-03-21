@@ -1,5 +1,7 @@
 import React, {useState, useCallback, Dispatch, SetStateAction, DependencyList, EffectCallback, useEffect} from 'react';
 
+
+// todo type string, number 에서만 가능한거라서 다른 인풋에 대해서 예외처리 생각하기
 export function useInput<T>(initialValue: T, maxLength = Infinity): [T, (e: React.FormEvent) => void, Dispatch<SetStateAction<T>>] {
     const [value, setValue] = useState<T>(initialValue);
     const handler = useCallback(e => {
@@ -19,7 +21,7 @@ export function useErrorInput(initialValue: string, regEx: RegExp =wildCard, max
     const handler = useCallback(e => {
         if (e.target.value.length <= maxLength) {
             setValue(e.target.value);
-            setError(!regEx.test(e.target.value));
+            setError(!regEx.test(e.target.value.toString()));
         } else {
             setError(true);
         }
