@@ -14,14 +14,39 @@ export function useInput<T>(initialValue: T, maxLength = Infinity): [T, (e: Reac
 
 const wildCard = new RegExp(/.*/g);
 
-export function useErrorInput(initialValue: string, regEx: RegExp =wildCard, maxLength = Infinity): [string, (e: React.FormEvent) => void, Dispatch<SetStateAction<string>>, boolean] {
+
+const support = {
+    email: 'email',
+    phone_number: 'phone_number',
+    onlyKo: 'onlyKo',
+    onlyEng: 'onlyEng',
+    onlyNum: 'onlyNum',
+    wildCard: 'wildCard'
+}
+
+type SupportRegExpType = keyof typeof support;
+
+const sampleRegExp: Record<SupportRegExpType, RegExp> = {
+    email: new RegExp(
+        /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+    ),
+    phone_number: new RegExp(/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/),
+    onlyKo: new RegExp(/^[가-힣]+$/),
+    onlyEng: new RegExp(/^[a-zA-Z]+$/),
+    onlyNum: new RegExp(/^[0-9]+$/),
+    wildCard
+}
+
+export function useErrorInput(initialValue: string, regEx: RegExp | SupportRegExpType = wildCard, maxLength = Infinity): [string, (e: React.FormEvent) => void, Dispatch<SetStateAction<string>>, boolean] {
     const [value, setValue] = useState<string>(initialValue);
     const [error, setError] = useState<boolean>(false);
+    const req: RegExp = typeof regEx === 'string' ? sampleRegExp[regEx] : regEx;
 
     const handler = useCallback(e => {
         if (e.target.value.length <= maxLength) {
             setValue(e.target.value);
-            setError(!regEx.test(e.target.value.toString()));
+
+            setError(!req.test(e.target.value.toString()));
         } else {
             setError(true);
         }

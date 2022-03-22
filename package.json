@@ -1,6 +1,6 @@
 {
   "name": "custom-hook-react",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "use easy custom hook",
   "main": "index.js",
   "scripts": {
