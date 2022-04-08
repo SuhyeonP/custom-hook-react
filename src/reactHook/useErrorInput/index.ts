@@ -38,7 +38,7 @@ export function useErrorInput(initialValue: string, regEx: RegExp | SupportRegEx
         } else {
             setError(true);
         }
-    },[])
+    },[value])
 
     return [value, handler, setValue, error];
 }
