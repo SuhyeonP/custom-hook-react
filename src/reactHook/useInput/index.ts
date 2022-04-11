@@ -8,6 +8,6 @@ export function useInput<T>(initialValue: T, maxLength = Infinity): [T, TextOnCh
         if (e.target.value.length <= maxLength) {
             setValue(e.target.value);
         }
-    }, [value]);
+    }, []);
     return [value, handler, setValue];
 }
