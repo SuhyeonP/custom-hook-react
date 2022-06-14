@@ -1,6 +1,7 @@
 import React, {useState, useCallback, Dispatch, SetStateAction, DependencyList, EffectCallback, useEffect} from 'react';
 export { useInput } from './useInput'
 export { useErrorInput, sampleRegExp } from './useErrorInput';
+export { useSortPage } from './useSortPage';
 export * from './typing';
 
 // // const [v, setV] = useState(true);
